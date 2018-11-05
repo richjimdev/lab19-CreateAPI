@@ -16,9 +16,11 @@ namespace CreateAPI
     {
         public IConfiguration Configuration { get; set; }
 
-        public Startup(IConfiguration configuration)
+        public Startup()
         {
-            Configuration = configuration;
+            var builder = new ConfigurationBuilder().AddEnvironmentVariables();
+            builder.AddUserSecrets<Startup>();
+            Configuration = builder.Build();
         }
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
@@ -26,7 +28,7 @@ namespace CreateAPI
         {
             services.AddDbContext<TodoDbContext>(options =>
             {
-                options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]);
+                options.UseSqlServer(Configuration["ConnectionStrings:ProductionDB"]);
             });
             services.AddMvc().AddXmlDataContractSerializerFormatters();
         }
