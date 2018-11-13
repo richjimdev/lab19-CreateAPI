@@ -9,7 +9,9 @@ namespace CreateAPITest
 {
     public class UnitTest1
     {
-
+        /// <summary>
+        /// Testing reading todo
+        /// </summary>
         [Fact]
         public async void CanReadTodo()
         {
@@ -34,7 +36,9 @@ namespace CreateAPITest
             }
         }
 
-
+        /// <summary>
+        /// Testing creating todo
+        /// </summary>
         [Fact]
         public async void CanCreateATodo()
         {
@@ -59,6 +63,9 @@ namespace CreateAPITest
             }
         }
 
+        /// <summary>
+        /// Testing Update todo
+        /// </summary>
         [Fact]
         public async void CanUpdateATodo()
         {
@@ -89,6 +96,9 @@ namespace CreateAPITest
             }
         }
 
+        /// <summary>
+        /// Testing delete todo
+        /// </summary>
         [Fact]
         public async void CanDeleteATodo()
         {
@@ -117,6 +127,9 @@ namespace CreateAPITest
             }
         }
 
+        /// <summary>
+        /// Testing Read todo list
+        /// </summary>
         [Fact]
         public async void CanReadATodoList()
         {
@@ -142,6 +155,9 @@ namespace CreateAPITest
             }
         }
 
+        /// <summary>
+        /// Testing update todo list
+        /// </summary>
         [Fact]
         public async void CanUpdateATodoList()
         {
@@ -172,6 +188,9 @@ namespace CreateAPITest
             }
         }
 
+        /// <summary>
+        /// Testing creating list
+        /// </summary>
         [Fact]
         public async void CanCreateAList()
         {
@@ -197,6 +216,9 @@ namespace CreateAPITest
             }
         }
 
+        /// <summary>
+        /// Testing deleting a list
+        /// </summary>
         [Fact]
         public async void CanDeleteAList()
         {
