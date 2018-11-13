@@ -116,5 +116,60 @@ namespace CreateAPITest
                 Assert.DoesNotContain(task, taskTitle);
             }
         }
+
+        [Fact]
+        public async void CanReadATodoList()
+        {
+            //Arrange
+            DbContextOptions<TodoDbContext> options =
+                new DbContextOptionsBuilder<TodoDbContext>()
+                .UseInMemoryDatabase("GetTodoListName")
+                .Options;
+
+            using (TodoDbContext context = new TodoDbContext(options))
+            {
+                TodoList list = new TodoList();
+                list.Title = "testList";
+
+                context.TodoLists.Add(list);
+                context.SaveChanges();
+
+                //Act
+                var listContents = await context.TodoLists.FirstOrDefaultAsync(x => x.Title == list.Title);
+
+                //Assert
+                Assert.Equal("testList", listContents.Title);
+            }
+        }
+
+        [Fact]
+        public async void CanUpdateATodoList()
+        {
+            //Arrange
+            DbContextOptions<TodoDbContext> options =
+                new DbContextOptionsBuilder<TodoDbContext>()
+                .UseInMemoryDatabase("GetTodoListName")
+                .Options;
+
+            using (TodoDbContext context = new TodoDbContext(options))
+            {
+                TodoList list = new TodoList();
+                list.Title = "testList";
+
+                context.TodoLists.Add(list);
+                context.SaveChanges();
+
+                //Act
+                list.Title = "updateList";
+
+                context.TodoLists.Update(list);
+                context.SaveChanges();
+
+                var listContents = await context.TodoLists.FirstOrDefaultAsync(x => x.Title == list.Title);
+
+                //Assert
+                Assert.Equal("updateList", listContents.Title);
+            }
+        }
     }
 }
